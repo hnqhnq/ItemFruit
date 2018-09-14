@@ -1,0 +1,12 @@
+i# maven ignore  
+django_env/ 
+project/.idea/
+background/.idea/
+.idea/
+myscrapy/.idea/
+*.jar  
+*.war  
+*.zip  
+*.tar  
+*.tar.gz
+*.pyc

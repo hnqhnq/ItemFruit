@@ -1,0 +1,1 @@
+用Scrapy爬取链家上的房源信息并保存到MongoDB的爬虫，实现了从MongoDB到MySQL的转存 

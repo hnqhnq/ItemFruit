@@ -1,0 +1,48 @@
+安装Docker
+CentOS: yum install docker-io
+Ubuntu: apt install docker-ce
+
+启动Docker
+CentOS: systemctl start docker
+Ubuntu: service docker start
+
+下载镜像
+docker pull <image-name>:<version>
+
+创建容器并运行
+docker run -p <out-port>:<in-port> -d --name <container-name> <image-name>:<version>
+如果是MySQL容器要指定管理员密码
+-e MYSQL_ROOT_PASSWORD=123456
+
+停止容器
+docker stop <container-name>
+
+启动容器
+docker start <container-name>
+
+查看所有容器
+docker container ls -a
+
+查看正在运行的容器
+docker ps
+
+删除容器（慎重的使用！！！）
+docker container rm <container-name>
+
+清除所有的容器
+docker container prune (慎重的使用！！！否则从删库到跑路了哟)
+
+SQL
+- DDL: create drop alter
+- DML: insert delete update
+- DQL: select
+- DCL: grant revoke
+
+如果使用MySQL 8.x，可能因为客户端工具过旧导致无法连接
+可以登录到运行MySQL的容器进行下面的配置
+
+docker container exec -it <container-name> /bin/bash
+
+mysql -u root -p
+
+alter user 'root'@'%' identified with mysql_native_password by '123456' password expire never;

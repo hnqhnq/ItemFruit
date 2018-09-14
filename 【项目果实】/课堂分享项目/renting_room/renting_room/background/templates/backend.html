@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extCSS %}
+{
+{% endblock %}
+
+{% block js %}
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <script src="{% static 'js/echarts.common.min.js' %}"></script>
+
+{% endblock %}
+
+
+{% block content %}
+<div id="main" style="width: 1500px;height:400px;padding-left: 10px"></div>
+    <input id="area_names" type="hidden" value="{{ area_names }}">
+    <input id="counts" type="hidden" value="{{ counts }}">
+
+{% endblock %}
+
+{% block foot %}
+<script type="text/javascript">
+
+    /* eval("alert('ok');");  该eval函数可以将js字符串转成json对象 */
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    var area_names = $('#area_names').val();
+    {#alert(area_names.type());#}
+    var counts = $('#counts').val();
+
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '成都地区'
+        },
+        tooltip: {},
+        legend: {
+            data:['房源数量']
+        },
+        xAxis: {
+            data: eval(area_names)
+        },
+        yAxis: {},
+        series: [{
+            name: '房源数量',
+            type: 'bar',
+            data: eval(counts)
+        }]
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+{% endblock %}
